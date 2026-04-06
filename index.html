@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Selecione um perfil para assistir" />
+    <title>Seleção de Perfil - Netflix Clone</title>
+    <link rel="stylesheet" href="estilos.css" />
+  </head>
+
+  <body>
+    <main>
+      <header>
+        <h1>Quem está assistindo?</h1>
+        <div class="toggle-tema">
+          <input type="checkbox" id="switch-tema" class="toggle-input" />
+          <label for="switch-tema" class="toggle-label">
+          </label>
+        </div>
+      </header>
+
+      <nav aria-label="Seleção de perfis">
+        <ul class="profiles">
+
+          <li class="profile-item">
+            <a href="catalogo/catalogo.html" class="profile-link">
+              <div class="img-container">
+                <img
+                  src="/assets/perfil-1.png"
+                  alt="Boneco gótico de barro em cenário sombrio"
+                />
+              </div>
+              <span>Lianna</span>
+            </a>
+          </li>
+
+          <li class="profile-item">
+            <a href="catalogo/catalogo.html" class="profile-link">
+              <div class="img-container">
+                <img
+                  src="/assets/perfil-2.png"
+                  alt="Boné de aba reta azul com logo bordado"
+                />
+              </div>
+              <span>Luis</span>
+            </a>
+          </li>
+
+          <li class="profile-item">
+            <a href="catalogo/catalogo.html" class="profile-link">
+              <div class="img-container">
+                <img
+                  src="/assets/perfil-3.png"
+                  alt="Sapinho verde sorridente com olhos grandes e brilhantes"
+                />
+              </div>
+              <span>Júnior</span>
+            </a>
+          </li>
+
+          <li class="profile-item">
+            <a href="catalogo/catalogo.html" class="profile-link">
+              <div class="img-container">
+                <img
+                  src="/assets/perfil-4.png"
+                  alt="Jovem feliz tomando café"
+                />
+              </div>
+              <span>Lays</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </main>
+
+    <script src="js/tema.js" defer></script>
+    <script src="js/index.js" defer></script>
+
+  </body>
+</html>

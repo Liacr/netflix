@@ -1,0 +1,243 @@
+/* --- VARIÁVEIS E TEMAS --- */
+:root {
+  /* Padrão Dark (Netflix Original) */
+  --bg-main: #141414;
+  --text-color: #808080;
+  --highlight: #ffffff;
+  --border-radius: 1.25rem;
+  --toggle-bg: #404040;
+  --shadow-color: rgba(255, 255, 255, 0.2);
+
+  transition: background-color 0.3s ease;
+}
+
+/* Sobrescrita para Light Theme */
+html.light-theme {
+  --bg-main: #f8f8f8;
+  --text-color: #5d5d5d;
+  --highlight: #121212;
+  --toggle-bg: #adadad;
+  --shadow-color: rgba(0, 0, 0, 0.315);
+}
+
+/* --- RESET E BASE --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--highlight);
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  overflow-x: hidden;
+  position: relative;
+  /* Transição suave para o body e textos */
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+main {
+  width: 100%;
+  max-width: 1400px;
+  text-align: center;
+}
+
+h1 {
+  font-size: clamp(1.8rem, 4vw, 3.5rem);
+  font-weight: 400;
+  margin-bottom: 4rem;
+  letter-spacing: 1px;
+  transition: color 0.3s ease;
+}
+
+/* --- TOGGLE SWITCH --- */
+.toggle-tema {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  display: flex;
+  align-items: center;
+  z-index: 10;
+}
+
+.toggle-input {
+  display: none;
+}
+
+.toggle-label {
+  width: 3.2rem;
+  height: 1.7rem;
+  background: var(--toggle-bg);
+  border-radius: 2rem;
+  cursor: pointer;
+  position: relative;
+  display: block;
+  transition: background 0.3s ease;
+}
+
+.toggle-label::after {
+  content: "";
+  position: absolute;
+  width: 1.3rem;
+  height: 1.3rem;
+  background: var(--highlight);
+  border-radius: 50%;
+  top: 0.2rem;
+  left: 0.2rem;
+  transition:
+    left 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    background 0.3s ease;
+}
+
+.toggle-input:checked + .toggle-label::after {
+  left: 1.7rem;
+}
+
+/* --- CONTAINER DE PERFIS --- */
+.profiles {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3.5rem;
+  list-style: none;
+}
+
+.profile-item {
+  opacity: 0; /* Começa invisível para a animação de entrada */
+  animation: profileFadeIn 0.6s ease forwards;
+}
+
+.profile-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: var(--text-color);
+  width: 10rem;
+  /* Transição do conjunto todo */
+  transition:
+    transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+    color 0.3s ease;
+}
+
+.img-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  border: 3px solid transparent;
+  background: #9d9d9d8b;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition:
+    filter 0.3s ease,
+    transform 0.5s ease;
+}
+
+.profile-link span {
+  margin-top: 1.2rem;
+  font-size: 1.25rem;
+  display: block;
+}
+
+/* --- INTERAÇÕES (HOVER/FOCUS) --- */
+@media (hover: hover) {
+  .profile-link:hover {
+    transform: translateY(-15px);
+    color: var(--highlight);
+  }
+
+  .profile-link:hover .img-container {
+    border-color: var(--highlight);
+    box-shadow: 0 10px 25px var(--shadow-color);
+  }
+
+  .profile-link:hover img {
+    filter: brightness(1.2);
+    transform: scale(1.08);
+  }
+}
+
+/* --- TOQUE (MOBILE) --- */
+@media (pointer: coarse) {
+  .profile-link:active {
+    transform: scale(0.92);
+    transition: transform 0.1s;
+  }
+
+  .profile-link:active .img-container {
+    border-color: var(--highlight);
+    filter: brightness(0.8);
+  }
+
+  .profile-link:active span {
+    color: var(--highlight);
+  }
+}
+
+/* --- RESPONSIVIDADE --- */
+@media (max-width: 768px) {
+  .profiles {
+    gap: 2rem;
+  }
+  .profile-link {
+    width: 8rem;
+  }
+  h1 {
+    margin-bottom: 2.5rem;
+  }
+  .toggle-tema {
+    top: 1rem;
+    right: 1rem;
+  }
+}
+
+@media (min-width: 1900px) {
+  .profiles {
+    gap: 5rem;
+  }
+  .profile-link {
+    width: 12rem;
+  }
+}
+
+/* --- ANIMAÇÕES --- */
+@keyframes profileFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.profile-item:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.profile-item:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.profile-item:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.profile-item:nth-child(4) {
+  animation-delay: 0.4s;
+}
